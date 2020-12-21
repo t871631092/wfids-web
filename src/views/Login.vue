@@ -4,7 +4,8 @@
       <el-col :xs="18" :sm="12" :md="8" :lg="8" :xl="8">
         <el-card :body-style="{ padding: '0px' }" style="min-width: 350px">
           <div slot="header" class="tk-header clearfix">
-            <h1>20a101</h1>
+            <h3>天气预报综合展示系统</h3>
+            <h5>Weather Forcast Integrated Display System</h5>
           </div>
           <div style="padding: 14px; padding-top: 50px">
             <el-form
@@ -75,4 +76,41 @@ export default {
 </script>
 
 <style>
+.el-card {
+  border-radius: 0px;
+  border: 0px solid #ebeef5;
+}
+.el-card__header {
+  background-color: rgba(0, 255, 255, 0.2);
+  color: white;
+  background: linear-gradient(
+    -45deg,
+    #f186657c,
+    #e7428152,
+    #23a5d588,
+    #23d5ab86
+  );
+  animation: gradientBG 30s ease infinite;
+  background-size: 400% 400%;
+  width: 100%;
+  height: 100%;
+  scroll-snap-type: y mandatory;
+}
+.el-card__body {
+  background-color: rgb(255, 255, 255);
+}
+.el-card {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
 </style>
