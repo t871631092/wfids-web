@@ -17,6 +17,9 @@ const routes = [
       {
         path: 'index',
         component: () => import('../views/Login.vue')
+      },{
+        path:'map',
+        component: ()=>import('../views/glob.vue')
       }
     ]
   },
