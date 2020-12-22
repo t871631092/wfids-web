@@ -26,7 +26,7 @@
                 <el-button
                   type="primary"
                   style="width: 100%"
-                  :disabled="canlogin"
+                  @click="login"
                   >登录</el-button
                 >
               </el-form-item>
@@ -71,6 +71,9 @@ export default {
   },
   methods:{
       onSubmit() {},
+      login(){
+          this.$router.push({path:'Index'})
+      }
   }
 };
 </script>
@@ -83,6 +86,11 @@ export default {
 .el-card__header {
   background-color: rgba(0, 255, 255, 0.2);
   color: white;
+  width: 100%;
+  height: 100%;
+  scroll-snap-type: y mandatory;
+}
+.login-bg{
   background: linear-gradient(
     -45deg,
     #f186657c,
@@ -90,11 +98,8 @@ export default {
     #23a5d588,
     #23d5ab86
   );
+  background-size: 300% 300%;
   animation: gradientBG 30s ease infinite;
-  background-size: 400% 400%;
-  width: 100%;
-  height: 100%;
-  scroll-snap-type: y mandatory;
 }
 .el-card__body {
   background-color: rgb(255, 255, 255);
