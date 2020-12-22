@@ -24,11 +24,13 @@
               </el-form-item>
               <el-form-item label-width="0px" style="padding-top: 20px">
                 <el-button type="primary" style="width: 100%" @click="login"
-                  >登录</el-button
+                  >注册</el-button
                 >
               </el-form-item>
               <el-form-item label-width="0px" size="mini">
-                <div style="font-size: 8px; text-align: center"></div>
+                <div style="font-size: 8px; text-align: center"><router-link to="/Index"
+                      >返回</router-link
+                    ></div>
               </el-form-item>
             </el-form>
           </div>
@@ -78,7 +80,6 @@ export default {
             this.$store.commit("setUsername",res.username);
             this.$store.commit("setIslogin",res.islogin);
             this.$router.push({ path: "Index" });
-            console.log(123)
           } else {
             alert(res.msg);
           }

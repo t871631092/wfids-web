@@ -10,7 +10,7 @@ export default new Vuex.Store({
   },
   mutations: {
     setUsername(n,g){
-      this.state.username=g;
+      this.state.username=g==""?"未登录":g;
     },
     setIslogin(is,g){
       this.state.islogin=g?true:false;

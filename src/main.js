@@ -45,8 +45,9 @@ new Vue({
   render: h => h(App),
   created: function () {
     this.get("/User/islogin", res => {
-      console.log(res.username)
-      this.$store.commit("setUsername",res.username);
+      if(res.islogin){
+        this.$store.commit("setUsername",res.username);
+      }
       this.$store.commit("setIslogin",res.islogin);
     })
   }

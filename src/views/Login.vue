@@ -28,7 +28,9 @@
                 >
               </el-form-item>
               <el-form-item label-width="0px" size="mini">
-                <div style="font-size: 8px; text-align: center"></div>
+                <div style="font-size: 8px; text-align: center">
+                  <router-link to="/Index">返回</router-link>
+                </div>
               </el-form-item>
             </el-form>
           </div>
@@ -73,10 +75,10 @@ export default {
         "/User/login",
         { username: this.form.username, password: this.form.password },
         (res) => {
-            console.log(res);
+          console.log(res);
           if (res.success) {
-            this.$store.commit("setUsername",res.username);
-            this.$store.commit("setIslogin",res.islogin);
+            this.$store.commit("setUsername", res.username);
+            this.$store.commit("setIslogin", res.islogin);
             this.$router.push({ path: "Index" });
           } else {
             alert(res.msg);
