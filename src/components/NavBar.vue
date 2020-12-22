@@ -13,12 +13,6 @@
               <b-nav-item href="#"
                 ><router-link to="/Login">首页</router-link></b-nav-item
               >
-              <b-nav-item href="#"
-                ><router-link to="/Login">登陆</router-link></b-nav-item
-              >
-              <b-nav-item href="#"
-                ><router-link to="/Register">注册</router-link></b-nav-item
-              >
             </b-navbar-nav>
 
             <!-- Right aligned nav items -->
@@ -29,14 +23,24 @@
                 <b-dropdown-item href="#">RU</b-dropdown-item>
                 <b-dropdown-item href="#">FA</b-dropdown-item>
               </b-nav-item-dropdown>
-
               <b-nav-item-dropdown right>
                 <!-- Using 'button-content' slot -->
                 <template #button-content>
-                  <em>User</em>
+                  <em>{{ username }}</em>
                 </template>
-                <b-dropdown-item href="#">Profile</b-dropdown-item>
-                <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+                <template v-if="!islogin">
+                  <b-dropdown-item href="#"
+                    ><router-link to="/Login"
+                      >登陆</router-link
+                    ></b-dropdown-item
+                  >
+                  <b-dropdown-item href="#"
+                    ><router-link to="/Register"
+                      >注册</router-link
+                    ></b-dropdown-item
+                  >
+                </template>
+                <b-dropdown-item v-else @click="logout">注销</b-dropdown-item>
               </b-nav-item-dropdown>
             </b-navbar-nav>
           </b-collapse>
@@ -49,6 +53,24 @@
 <script>
 export default {
   name: "NavBar",
+  computed: {
+    username: function () {
+      return this.$store.state.username;
+    },
+    islogin:function(){
+      return this.$store.state.islogin;
+    }
+  },
+  methods: {
+    logout() {
+      this.get("/User/logout", (res) => {
+        if (res.success) {
+          this.$store.commit("setUsername", "未登录");
+          this.$store.commit("setIslogin", res.islogin);
+        }
+      });
+    },
+  },
 };
 </script>
 

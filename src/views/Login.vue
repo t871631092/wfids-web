@@ -23,10 +23,7 @@
                 <el-input v-model="form.password" type="password"></el-input>
               </el-form-item>
               <el-form-item label-width="0px" style="padding-top: 20px">
-                <el-button
-                  type="primary"
-                  style="width: 100%"
-                  @click="login"
+                <el-button type="primary" style="width: 100%" @click="login"
                   >登录</el-button
                 >
               </el-form-item>
@@ -69,12 +66,25 @@ export default {
       return !(this.form.username != "" && this.form.password != "");
     },
   },
-  methods:{
-      onSubmit() {},
-      login(){
-          this.$router.push({path:'Index'})
-      }
-  }
+  methods: {
+    onSubmit() {},
+    login() {
+      this.post(
+        "/User/login",
+        { username: this.form.username, password: this.form.password },
+        (res) => {
+            console.log(res);
+          if (res.success) {
+            this.$store.commit("setUsername",res.username);
+            this.$store.commit("setIslogin",res.islogin);
+            this.$router.push({ path: "Index" });
+          } else {
+            alert(res.msg);
+          }
+        }
+      );
+    },
+  },
 };
 </script>
 
@@ -90,7 +100,7 @@ export default {
   height: 100%;
   scroll-snap-type: y mandatory;
 }
-.login-bg{
+.login-bg {
   background: linear-gradient(
     -45deg,
     #f186657c,
